@@ -21,8 +21,10 @@ const register = async (req, res, next) => {
         const user = { name, phone, email, password, role };
         const newUser = new User(user);
 
+        await newUser.save();
+
         res.status(201).json({
-            succes: true,
+            success: true,
             message: "New user created!",
             data: {
                 id: newUser._id,
@@ -109,6 +111,15 @@ const getUserData = async (req, res, next) => {
     }
 }
 
+const logout = async (req, res, next) => {
+    try {
+        
+        res.clearCookie('accessToken')
+        res.status(200).json({success: true, message: "User logout successfully!"});
+    } catch (error) {
+        next(error);
+    }
+}
 
 
-module.exports = { register, login, getUserData };
+module.exports = { register, login, getUserData, logout };
