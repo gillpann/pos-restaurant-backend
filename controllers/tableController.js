@@ -5,7 +5,7 @@ const Table = require("../models/tableModel");
 const addTable = async (req, res, next) => {
     try {
         
-        const { tableNo } = req.body;
+        const { tableNo, seats } = req.body;
 
         if (!tableNo) {
             return next(createHttpError(400, "Table number is required!"));
@@ -17,7 +17,7 @@ const addTable = async (req, res, next) => {
             return next(createHttpError(400, "Table already exists!"));
         }
 
-        const newTable = new Table({ tableNo });
+        const newTable = new Table({ tableNo, seats });
         await newTable.save();
 
         res.status(201).json({
@@ -34,7 +34,10 @@ const getTables = async (req, res, next) => {
     try {
         
         const tables = await Table.find()
-        .populate("currentOrder") 
+        .populate({
+            path: "currentOrder",
+            select: "customerDetails"
+        }) 
         .sort({ tableNo: 1 });
 
         res.status(200).json({
