@@ -1,9 +1,10 @@
 # 🍽️ POS Restaurant - Backend
 
-RESTful API for a Restaurant Point of Sale (POS) system built using Node.js, Express, and MongoDB.
+A scalable and structured RESTful API for a Restaurant Point of Sale (POS) system built using Node.js, Express, and MongoDB.
 
-This backend handles order processing, customer management, and menu operations.
+This backend powers the core business logic of the POS application, including menu management, customer handling, and order processing. It is designed with clean architecture principles, modular structure, and maintainable code practices to ensure scalability and long-term growth.
 
+The API is built to integrate seamlessly with a modern frontend application and supports real-world restaurant workflows.
 
 ---
 
